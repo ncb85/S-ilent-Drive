@@ -1,0 +1,32 @@
+logging:
+    file:
+        name: silent-drive.log
+        path: .
+    pattern:
+        console: "%d [%t] %-5level %logger{36} - %msg%n"
+        file: "%d [%t] %-5level %logger{36} - %msg%n"
+    level:
+        root:     info
+        java.awt: info
+        sun.awt:  info
+        com.archeocomp: info
+silent-drive:
+    disk:                       # 5.25" HD floppy disk CP/M
+        spt:      72            # Number of 128-byte records per track
+        bsh:      4             # Block shift. 3 => 1k, 4 => 2k, 5 => 4k...
+        dsm:      179           # (no. of blocks on the disc)-1
+        drm:      63            # (no. of directory entries)-1
+        off:      0             # Offset, number of reserved tracks
+    serial:
+        baudrate: 19200
+        databits: 8
+        stopbits: 1
+        parity: 0
+    app:
+        version:  1.0.0 - 5.25" DD 360kB virtual drive
+spring:
+    main:
+        web-application-type: NONE
+    application:
+        name: S(ilent)Drive
+---

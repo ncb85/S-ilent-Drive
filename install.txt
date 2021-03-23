@@ -1,0 +1,23 @@
+
+Install instructions:
+Get Java (11+)
+https://jdk.java.net/
+
+Install it, for example to this location:
+C:\Program Files\Java\jdk-15
+
+Program BIOS into EPROM and plug it into NCB85
+
+Extract application rar to a directory (Silent Drive)
+Edit set_java_home.bat - set JAVA_HOME to reflect your system
+
+Serial ports on NCB85:
+There are two serial ports, one for console (UART 8251), another one for virtual drive (MUART 8256). You will need two USB/Serial to TTL adapters. Find in Device Manager which adapter is on which port.
+
+Running:
+1. Open terminal (HyperTerminal on port where adapter attached to UART 8251 is installed. Set to 19220,8,1 no parity. Set ANSIW emulation.
+2. First run application on PC (run.bat), open serial port where MUART 8256 is attached.
+3. Power on NCB85. Both MUART activity LED should flicker.
+4. CP/M is ready in terminal at prompt A:>
+
+ENJOY

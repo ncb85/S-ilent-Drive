@@ -1,0 +1,23 @@
+
+Navod na instalaciu:
+Stiahni Java (11 alebo vyssiu)
+https://jdk.java.net/
+
+Nainstaluj, napr. na miesto ako nizsie:
+C:\Program Files\Java\jdk-15
+
+Naprogramuj BIOS do EPROMky, zasun do NCB85
+
+Rozpakuj rarko aplikacie do nejakeho adresara (napr. Silent Drive)
+Uprav subor set_java_home.bat - tak aby JAVA_HOME zodpovedalo miestu kde je JAVA z prveho kroku
+
+Seriove porty na NCB85:
+Su dva, jeden pre konzolu (UART 8251), druhy pre virtualny disk (MUART 8256). Je treba mat dva USB/Seriak na TTL adaptery. V Device Manager najdi ktory adapter ma prideleny ktory port.
+
+Spustenie:
+1. Otvor terminal (HyperTerminal na porte kde je adapter pripojeny k UARTu 8251. Nastav 19220,8,1 bez parity. Nastav ANSIW emulaciu.
+2. Spusti appliciu na PC (run.bat pre 1.44MB mechaniky, run12.bat pre 1.2MB a run36.bat pre 360kB), vyber seriovy port kde je adapter pripojeny k MUARTu 8256.
+3. Zapni NCB85. Vyber si BIOS, obdive LEDky indikujuce aktivitu MUARTu budu blikat.
+4. CP/M sa v terminali prihlasi promptom A:>
+
+Uzivaj

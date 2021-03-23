@@ -1,0 +1,6 @@
+Lat, Long (deg)? 48.93,18.14
+Time zone (hrs)? -1
+Year, Month, Day? 2015,12,20
+
+Sunrise at  7:38,  azimuth 126.0
+Sunset at  15:52,  azimuth 234.0
