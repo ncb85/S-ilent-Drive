@@ -37,7 +37,8 @@ public class DiskTableModel extends AbstractTableModel {
 	}
 	
     public int getRowCount() {
-        return diskAllocationBlocks / COLUMNS;
+        return (diskAllocationBlocks / COLUMNS) +
+				((diskAllocationBlocks % COLUMNS) > 0 ? 1 : 0);
     }
 
     public int getColumnCount() {
@@ -46,6 +47,9 @@ public class DiskTableModel extends AbstractTableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
 		int index = rowIndex * COLUMNS + columnIndex;
+		if (index >= diskEmulator.getTotalNumberOfAllocationBLocks()) {
+			return AllocationBlockStateEnum.NOT_A_BLOCK.name();
+		}
 		if (index < dirAllocationBlocks) {
 			List<DirEntry> dirEntriesList = directory.getDirEntries();
 			long numberOfUsedEntries = dirEntriesList.stream()
