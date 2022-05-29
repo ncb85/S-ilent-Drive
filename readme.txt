@@ -1,7 +1,7 @@
 
-S(ilent)Drive is a CP/M disk drive emulator
+S(ilent)Drive is a CP/M disk drive emulator working over serial port. It needs to include few bytes of code into BIOS of a CP/M machine .
 
-Can be run with JAVA 11 and above.
+Can be run on host with JAVA 11 and above.
 
 Implements CP/M disk geometry and commands:
 home
