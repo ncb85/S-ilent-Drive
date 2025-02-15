@@ -12,7 +12,7 @@
 				  class="ch.qos.logback.core.ConsoleAppender">
 			<layout class="ch.qos.logback.classic.PatternLayout">
 				<Pattern>
-					%black(%d{ISO8601}) [%blue(%t)] %highlight(%-5level) %yellow(%C{1.}): %msg%n%throwable
+					%black(%d{ISO8601}) [%blue(%t)] %highlight(%-5level) %yellow(%C{1}): %msg%n%throwable
 				</Pattern>
 			</layout>
 		</appender>
@@ -31,7 +31,7 @@
 				<fileNamePattern>${LOGS}/archived/spring-boot-logger-%d{yyyy-MM-dd}.%i.log
 				</fileNamePattern>
 				<timeBasedFileNamingAndTriggeringPolicy
-					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+					class="ch.qos.logback.core.rolling.SizeAndTimeBasedFileNamingAndTriggeringPolicy">
 					<maxFileSize>5MB</maxFileSize>
 				</timeBasedFileNamingAndTriggeringPolicy>
 			</rollingPolicy>
@@ -44,7 +44,7 @@
 		</root>
 
 		<!-- LOG "com.archeocomp*" at TRACE level -->
-		<logger name="com.baeldung" level="trace" additivity="false">
+		<logger name="com.archeocomp" level="trace" additivity="false">
 			<appender-ref ref="RollingFile" />
 			<appender-ref ref="Console" />
 		</logger>

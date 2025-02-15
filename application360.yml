@@ -18,7 +18,7 @@ silent-drive:
         drm:      63            # (no. of directory entries)-1
         off:      0             # Offset, number of reserved tracks
     serial:
-        baudrate: 19200
+        baudrate: 115200
         databits: 8
         stopbits: 1
         parity: 0

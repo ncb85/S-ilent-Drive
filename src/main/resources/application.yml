@@ -27,6 +27,7 @@ silent-drive:
 spring:
     main:
         web-application-type: NONE
+        allow-circular-references: true
     profiles:
         active: DEV
     application:

@@ -4,7 +4,6 @@
 package com.archeocomp.silentdrive.cpm;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -12,7 +11,6 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 @ConfigurationProperties(prefix = "silent-drive.disk")
-@ConstructorBinding
 public class DiskParametersImpl implements DiskParameters {
 
     private final Integer bsh;

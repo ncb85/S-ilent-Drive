@@ -45,8 +45,8 @@ public class DirEntry {
     public static final int POS_RC = 15;
     public static final int POS_ALLOCATION_BLOCKS = 16;
 
-	int index;
-	private byte[] dirbuffer;
+    int index;
+    private byte[] dirbuffer = new byte[32];
     private String filename;
     private int extentNumber;
     private int recordCount;

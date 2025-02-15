@@ -3,7 +3,7 @@
  */
 package com.archeocomp.silentdrive;
 
-import com.archeocomp.silentdrive.gui.SilentDriveFrame;
+import com.archeocomp.silentdrive.gui.SilentDriveFrameImpl;
 import com.archeocomp.silentdrive.utils.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class Scheduler {
 	private static Logger LOG = LoggerFactory.getLogger(Scheduler.class);
 	
 	@Autowired
-	private SilentDriveFrame frame;
+	private SilentDriveFrameImpl frame;
 	@Autowired
 	private FileUtils fileUtils;
 	

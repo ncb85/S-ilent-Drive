@@ -5,7 +5,6 @@ package com.archeocomp.silentdrive.serial;
 
 import com.archeocomp.silentdrive.DiskEmulator;
 import com.archeocomp.silentdrive.utils.ByteUtils;
-import com.archeocomp.silentdrive.utils.HexUtils;
 import com.fazecast.jSerialComm.SerialPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,9 +53,9 @@ public class SerialWorker {
 			SerialPort serialPort = serialUtil.getActiveCommPort();
 			while (serialPort.isOpen()) {
 				byte[] readData = serialUtil.readSerialPort(1);
-				if (readData != null) {
+				if (readData != null && readData[0] != 0) {
 					// check COLON
-					char p = (char)readData[COLON_POS];
+					//char p = (char)readData[COLON_POS];
 					int readByte = Byte.toUnsignedInt(readData[COLON_POS]);
 
 					switch (readByte) {

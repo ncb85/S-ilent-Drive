@@ -3,8 +3,8 @@
  */
 package com.archeocomp.silentdrive.test.unittest;
 
-import com.archeocomp.silentdrive.DiskEmulator;
 import com.archeocomp.silentdrive.DiskEmulatorImpl;
+import com.archeocomp.silentdrive.SilentDriveFrameMock;
 import com.archeocomp.silentdrive.cpm.Directory;
 import com.archeocomp.silentdrive.cpm.DiskParameters2k;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +27,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * LADDER COM
  */
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {DiskEmulatorImpl.class, Directory.class,
+@ContextConfiguration(classes = {SilentDriveFrameMock.class, DiskEmulatorImpl.class, Directory.class,
      DiskParameters2k.class})
 @SpringBootTest
 public class Directory2kBlockTest {

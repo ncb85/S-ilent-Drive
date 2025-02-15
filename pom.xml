@@ -5,19 +5,20 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.3</version>
+		<version>3.3.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.archeocomp</groupId>
 	<artifactId>silent-drive</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<name>S(ilent)Drive</name>
 	<description>S(ilent)Drive CP/M drive emulator</description>
 
 	<properties>
 		<java.version>11</java.version>
 		<maven.test.skip>true</maven.test.skip>
-		<resource.delimiter>^</resource.delimiter><!-- for use of build properties in YML config -->
+		<!-- for use of build properties in YML config -->
+		<resource.delimiter>^</resource.delimiter>
 	</properties>
 
 	<dependencies>

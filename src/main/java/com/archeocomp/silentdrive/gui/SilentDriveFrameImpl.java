@@ -19,7 +19,7 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import javax.swing.event.ListSelectionEvent;
@@ -35,9 +35,9 @@ import org.springframework.util.ResourceUtils;
  * app main frame
  */
 @Component
-public class SilentDriveFrame extends javax.swing.JFrame {
+public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDriveFrame {
 
-	private static Logger LOG = LoggerFactory.getLogger(SilentDriveFrame.class);
+	private static Logger LOG = LoggerFactory.getLogger(SilentDriveFrameImpl.class);
 	private static final int LED_DELAY = 500;  // 0.5s
 	private static final Color GRAY = new Color(204,204,204);
 	
@@ -247,7 +247,7 @@ public class SilentDriveFrame extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -305,8 +305,6 @@ public class SilentDriveFrame extends javax.swing.JFrame {
 
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setModel(diskTableModel);
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setShowVerticalLines(false);
         jTable1.setTableHeader(null);
         jScrollPane1.setViewportView(jTable1);
 
@@ -450,7 +448,7 @@ public class SilentDriveFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(

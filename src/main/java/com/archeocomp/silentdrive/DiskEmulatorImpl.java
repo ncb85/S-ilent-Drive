@@ -16,8 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DiskEmulatorImpl implements DiskEmulator {
 
-    private static Logger LOG = LoggerFactory.getLogger(DiskEmulatorImpl.class);
+	private static Logger LOG = LoggerFactory.getLogger(DiskEmulatorImpl.class);
 
 	private static final String OUT_DIR = "out";
 	
-    @Autowired
-    private DiskParameters diskParameters;
-    @Autowired
-    private Directory directory;
+	@Autowired
+	private DiskParameters diskParameters;
+	@Autowired
+	private Directory directory;
 	@Autowired
 	private SilentDriveFrame silentDriveFrame;
 

@@ -6,10 +6,9 @@ package com.archeocomp.silentdrive.serial;
 import com.fazecast.jSerialComm.SerialPort;
 import java.util.Arrays;
 import java.util.List;
-import javax.annotation.PreDestroy;
+import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -68,7 +67,7 @@ public class SerialUtil {
 	public byte[] readSerialPort(int numberOfBytes) {
 		byte[] readBuffer = null;
 		if (getActiveCommPort() != null) {
-			while(getActiveCommPort().bytesAvailable() < numberOfBytes); // wait for data from serial
+			//while(getActiveCommPort().bytesAvailable() < numberOfBytes); // wait for data from serial
 			readBuffer = new byte[numberOfBytes];
 			int numRead = getActiveCommPort().readBytes(readBuffer, numberOfBytes);
 			LOG.debug(String.format("readSerialPort read %d bytes", numRead));

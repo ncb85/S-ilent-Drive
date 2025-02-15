@@ -1,6 +1,6 @@
 package com.archeocomp.silentdrive;
 
-import com.archeocomp.silentdrive.gui.SilentDriveFrame;
+import com.archeocomp.silentdrive.gui.SilentDriveFrameImpl;
 import com.archeocomp.silentdrive.serial.SerialWorker;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -28,7 +28,7 @@ public class SilentDriveApplication implements CommandLineRunner {
 	private static Logger LOG = LoggerFactory.getLogger(SilentDriveApplication.class);
 	
 	@Autowired
-	private SilentDriveFrame frame;
+	private SilentDriveFrameImpl frame;
 	@Autowired
 	private Scheduler scheduler; // start scheduler automatically
 	

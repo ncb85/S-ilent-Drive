@@ -18,12 +18,12 @@ silent-drive:
         drm:      127           # (no. of directory entries)-1
         off:      0             # Offset, number of reserved tracks
     serial:
-        baudrate: 19200
+        baudrate: 115200
         databits: 8
         stopbits: 1
         parity: 0
     app:
-        version:  1.0.0 - 5.25" virtual drive
+        version:  1.0.0 - 5.25" HD 5.25" virtual drive
 spring:
     main:
         web-application-type: NONE
