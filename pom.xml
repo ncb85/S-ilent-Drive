@@ -15,7 +15,7 @@
 	<description>S(ilent)Drive CP/M drive emulator</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<maven.test.skip>true</maven.test.skip>
 		<!-- for use of build properties in YML config -->
 		<resource.delimiter>^</resource.delimiter>
