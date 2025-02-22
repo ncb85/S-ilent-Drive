@@ -1,10 +1,10 @@
 
 Install instructions:
-Get Java (11+)
+Get Java (17+)
 https://jdk.java.net/
 
 Install it, for example to this location:
-C:\Program Files\Java\jdk-15
+C:\Program Files\Java\jdk-17
 
 Program BIOS into EPROM and plug it into NCB85
 

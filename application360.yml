@@ -23,7 +23,7 @@ silent-drive:
         stopbits: 1
         parity: 0
     app:
-        version:  1.0.0 - 5.25" DD 360kB virtual drive
+        version:  1.0.2 - 5.25" DD 360kB virtual drive
 spring:
     main:
         web-application-type: NONE
