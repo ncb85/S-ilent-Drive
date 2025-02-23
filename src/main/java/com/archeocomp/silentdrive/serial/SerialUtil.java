@@ -6,7 +6,6 @@ package com.archeocomp.silentdrive.serial;
 import com.fazecast.jSerialComm.SerialPort;
 import java.util.Arrays;
 import java.util.List;
-import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,8 +32,7 @@ public class SerialUtil {
 	
 	private SerialPort activeCommPort = null;
 	
-	@PreDestroy
-	private void close() {
+	public void close() {
 		if (getActiveCommPort() != null && getActiveCommPort().isOpen()) {
 			getActiveCommPort().closePort();
 			LOG.info(String.format("Serial port %s closed", getActiveCommPort().getSystemPortName()));

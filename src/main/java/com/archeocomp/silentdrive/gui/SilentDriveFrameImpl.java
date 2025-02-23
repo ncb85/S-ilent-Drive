@@ -28,12 +28,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 /**
  * app main frame
  */
+@Profile(value = "RUN")
 @Component
 public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDriveFrame {
 
@@ -56,6 +58,8 @@ public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDr
 	private ComboBoxModel comboBoxModel;
 	@Autowired
 	private FileUtils fileUtils;
+	@Autowired
+	private SerialUtil serialUtil;
 	
 	private Image iconImage;
 	private List cpmFileSelectedList;
@@ -84,6 +88,14 @@ public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDr
 		diskEmulator.formatDisk();
 		fileUtils.importDefaultDir();
 		dirListModel.refresh();
+		// close app
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+			public void windowClosing(java.awt.event.WindowEvent e) {
+				serialUtil.close();
+			}
+		});
+		// curent file in dir list
 		jList1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e)
@@ -107,10 +119,10 @@ public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDr
 		// LEDs
 		timer1 = new Timer( LED_DELAY, e -> {
 			this.jLabel1.setForeground(GRAY);
-        });
+		});
 		timer2 = new Timer( LED_DELAY, e -> {
 			this.jLabel2.setForeground(new Color(204,204,204));
-        });
+		});
 	}
 	
 	/**
@@ -121,6 +133,7 @@ public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDr
 		return jCheckBox1.isSelected();
 	}
 	
+        @Override
 	public void writeLedOn() {
 		this.jLabel1.setForeground(Color.red);
 		if (timer1.isRunning()) {
@@ -131,6 +144,7 @@ public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDr
 		}
 	}
 	
+        @Override
 	public void readLedOn() {
 		this.jLabel2.setForeground(Color.GREEN);
 		if (timer2.isRunning()) {
@@ -464,7 +478,8 @@ public class SilentDriveFrameImpl extends javax.swing.JFrame implements SilentDr
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        //System.exit(0);
+	//System.exit(0);
+	serialUtil.close();
 		Window window = KeyboardFocusManager.getCurrentKeyboardFocusManager().getActiveWindow();
 
 		if (window != null)	{

@@ -11,16 +11,17 @@ import com.archeocomp.silentdrive.exception.InvalidConfigurationException;
 import com.archeocomp.silentdrive.exception.NotEnoughSpaceException;
 import com.archeocomp.silentdrive.gui.SilentDriveFrame;
 import com.archeocomp.silentdrive.utils.ByteUtils;
+import static com.archeocomp.silentdrive.utils.FileUtils.OUT_DIR;
 import com.archeocomp.silentdrive.utils.HexUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -29,15 +30,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DiskEmulatorImpl implements DiskEmulator {
 
-	private static Logger LOG = LoggerFactory.getLogger(DiskEmulatorImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DiskEmulatorImpl.class);
 
-	private static final String OUT_DIR = "out";
-	
 	@Autowired
 	private DiskParameters diskParameters;
 	@Autowired
 	private Directory directory;
 	@Autowired
+        @Lazy
 	private SilentDriveFrame silentDriveFrame;
 
     private boolean isBigdisk = false;  // allocation block address is 8(false) or 16 bit(true)
@@ -62,10 +62,6 @@ public class DiskEmulatorImpl implements DiskEmulator {
 		directory.postConstruct();
     }
 
-    @PreDestroy
-    private void close() {
-    }
-    
     /**
      * compute extent mask, based on BLS and DSM
      * BLS     DSM<256 DSM>255

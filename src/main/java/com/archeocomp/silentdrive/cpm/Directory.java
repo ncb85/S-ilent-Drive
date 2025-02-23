@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,10 +25,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Directory {
 
-    private static Logger LOG = LoggerFactory.getLogger(Directory.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Directory.class);
 
     @Autowired
     private DiskParameters diskParameters;
+    @Lazy
     @Autowired
     private DiskEmulator diskEmulator;
 
