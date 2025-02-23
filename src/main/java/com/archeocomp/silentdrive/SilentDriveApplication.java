@@ -1,13 +1,11 @@
 package com.archeocomp.silentdrive;
 
 import com.archeocomp.silentdrive.gui.SilentDriveFrameImpl;
-import com.archeocomp.silentdrive.serial.SerialWorker;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -58,7 +56,6 @@ public class SilentDriveApplication implements CommandLineRunner {
 		LOG.info("STARTING S(ilent)Drive");
 		new SpringApplicationBuilder(SilentDriveApplication.class)
                 .headless(false)
-                //.bannerMode(Banner.Mode.OFF)
                 .run(args);
     }
 

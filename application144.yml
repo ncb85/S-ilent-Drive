@@ -27,6 +27,8 @@ silent-drive:
 spring:
     main:
         web-application-type: NONE
+    profiles:
+        active: RUN
     application:
         name: S(ilent)Drive
 ---
