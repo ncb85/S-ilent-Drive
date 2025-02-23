@@ -23,6 +23,8 @@ public class FileUtils {
 	
 	public static final String DEFAULT_DIR = "./default/";
 	public static final String IN_DIR = "./in/";
+	public static final String OUT_DIR = "out";
+	
 
 	@Autowired
 	private DiskEmulator diskEmulator;

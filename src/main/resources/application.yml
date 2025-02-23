@@ -27,9 +27,8 @@ silent-drive:
 spring:
     main:
         web-application-type: NONE
-        allow-circular-references: true
     profiles:
-        active: DEV
+        active: RUN
     application:
         name: ^project.name^
 ---

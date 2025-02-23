@@ -1,7 +1,6 @@
 /**
  * table model for hex buffer
  */
-
 package com.archeocomp.silentdrive.gui.hexer;
 
 import java.io.BufferedWriter;
@@ -9,11 +8,13 @@ import java.io.IOException;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * represents memory from 0000 to FFFF, organized as a table with 16 bytes per row
+ * represents memory from 0000 to FFFF, organized as a table with 16 bytes per
+ * row
  */
 public class HexModel extends AbstractTableModel {
-	public static final int MEM_64KB = 65536;
-	public static final int PAGE_256 = 256;
+
+    public static final int MEM_64KB = 65536;
+    public static final int PAGE_256 = 256;
     private int data[] = new int[MEM_64KB];
     private static HexModel instance = null;
 
@@ -38,48 +39,48 @@ public class HexModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         String result = null;
         if (columnIndex == 0) {
-            int address = rowIndex*16;
-            result = byteToHex(address / PAGE_256) +  byteToHex(address % PAGE_256);
+            int address = rowIndex * 16;
+            result = byteToHex(address / PAGE_256) + byteToHex(address % PAGE_256);
         } else {
             columnIndex--;
-            result = byteToHex(data[rowIndex*16 + columnIndex]);
+            result = byteToHex(data[rowIndex * 16 + columnIndex]);
         }
         return result;
     }
 
-	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		return String.class;
-	}
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        return String.class;
+    }
 
-	@Override
-	public String getColumnName(int columnIndex) {
+    @Override
+    public String getColumnName(int columnIndex) {
         String name = "";
         if (columnIndex > 0) {
-            name = String.valueOf(Character.forDigit(columnIndex-1, 16)).toUpperCase();
+            name = String.valueOf(Character.forDigit(columnIndex - 1, 16)).toUpperCase();
         }
-		return name;
-	}
+        return name;
+    }
 
-	@Override
-	public boolean isCellEditable(int rowIndex, int columnIndex) {
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
         if (columnIndex > 0) {
             return true;
         } else {
             return false;
         }
-	}
+    }
 
-	@Override
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         columnIndex--;
-        int value = hexToByte((String)aValue);
+        int value = hexToByte((String) aValue);
         if ((value < 0) || (value > 255)) {
             value = 0;
         }
-        data[rowIndex*16 + columnIndex] = value;
-		this.fireTableCellUpdated(rowIndex, columnIndex);
-	}
+        data[rowIndex * 16 + columnIndex] = value;
+        this.fireTableCellUpdated(rowIndex, columnIndex);
+    }
 
     /**
      * @return the data
@@ -98,7 +99,7 @@ public class HexModel extends AbstractTableModel {
     public void fill(String valueStr) {
         int value = hexToByte(valueStr);
         if ((value >= 0) && (value < PAGE_256)) {
-            for (int i=0; i<MEM_64KB; i++) {
+            for (int i = 0; i < MEM_64KB; i++) {
                 data[i] = value;
             }
             this.fireTableDataChanged();
@@ -107,6 +108,7 @@ public class HexModel extends AbstractTableModel {
 
     /**
      * move data in buffer
+     *
      * @param offsetStr how much to move
      * @param direction up (true) or down
      */
@@ -119,15 +121,15 @@ public class HexModel extends AbstractTableModel {
         int newArray[] = new int[MEM_64KB];
         int fill = hexToByte(fillStr);
         if (direction) {
-            for (int i=MEM_64KB-offset; i<MEM_64KB; i++) {
+            for (int i = MEM_64KB - offset; i < MEM_64KB; i++) {
                 newArray[i] = fill;
             }
         } else {
-            for (int i=0; i<offset; i++) {
+            for (int i = 0; i < offset; i++) {
                 newArray[i] = fill;
             }
         }
-        for (int i=0; i<MEM_64KB; i++) {
+        for (int i = 0; i < MEM_64KB; i++) {
             int targetAddress = direction ? i - offset : i + offset;
             if ((targetAddress >= 0) && (targetAddress < MEM_64KB)) {
                 newArray[targetAddress] = data[i];
@@ -138,14 +140,15 @@ public class HexModel extends AbstractTableModel {
     }
 
     /**
-     * exports data as intel hex. each line consists of following fields
-     * : len address type data checksum
+     * exports data as intel hex. each line consists of following fields : len
+     * address type data checksum
+     *
      * @param startAddress
      * @param endAddress
      */
     public void exportIntelHex(BufferedWriter bw, String startAddressStr, String endAddressStr, int bytesPerLine) throws IOException {
         int startAddress = hexToByte(startAddressStr.substring(0, 2)) * PAGE_256 + hexToByte(startAddressStr.substring(2, 4));
-        if ((startAddress <0) || (startAddress > MEM_64KB)) {
+        if ((startAddress < 0) || (startAddress > MEM_64KB)) {
             startAddress = 0;
         }
         int endAddress = hexToByte(endAddressStr.substring(0, 2)) * PAGE_256 + hexToByte(endAddressStr.substring(2, 4)) + 1;
@@ -155,7 +158,7 @@ public class HexModel extends AbstractTableModel {
         String line = null;
         int checksum = 0;
         boolean firstLine = true;
-        for (int i=startAddress;i<endAddress; i++) {
+        for (int i = startAddress; i < endAddress; i++) {
             int recordLength;
             if (firstLine == true) {
                 int nextLineEndAddress = startAddress + bytesPerLine;
@@ -186,7 +189,7 @@ public class HexModel extends AbstractTableModel {
                 checksum += 0;
             }
             // data
-            for (int j=0; j<recordLength; j++) {
+            for (int j = 0; j < recordLength; j++) {
                 line += byteToHex(data[i + j]);
                 checksum += data[i + j];
                 checksum %= PAGE_256;
@@ -230,7 +233,7 @@ public class HexModel extends AbstractTableModel {
         line = line.substring(2);
 
         // data
-        for (int i=0; i<length; i++) {
+        for (int i = 0; i < length; i++) {
             data[address + i] = hexToByte(line.substring(0, 2));
             checksum += hexToByte(line.substring(0, 2));
             checksum %= PAGE_256;
@@ -251,7 +254,7 @@ public class HexModel extends AbstractTableModel {
             char lower = hex.charAt(1);
             int up = Character.digit(upper, 16);
             up *= 16;
-            int low =  Character.digit(lower, 16);
+            int low = Character.digit(lower, 16);
             result = up + low;
         }
         return result;

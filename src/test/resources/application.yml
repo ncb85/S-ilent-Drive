@@ -1,0 +1,7 @@
+## test properties
+spring:
+    main:
+        web-application-type: NONE
+    profiles:
+        active: TEST
+---
